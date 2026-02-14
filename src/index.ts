@@ -61,7 +61,7 @@ server.tool(
       conversation: [
         {
           role,
-          content: { text: content },
+          content,
           created_at: now,
         },
       ],
@@ -114,7 +114,8 @@ server.tool(
       parts.push("\n## 記憶アイテム");
       for (const item of result.items) {
         const tag = item.memory_type ? `[${item.memory_type}]` : "";
-        parts.push(`- ${tag} ${item.summary}`);
+        const text = item.content || item.summary || "";
+        parts.push(`- ${tag} ${text}`);
       }
     }
 
