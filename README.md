@@ -8,9 +8,11 @@
 
 | ツール | 説明 |
 |--------|------|
-| `memu_memorize` | 会話・情報を長期記憶として保存 |
-| `memu_retrieve` | クエリで関連記憶を検索 |
+| `memu_memorize` | 会話を長期記憶として保存（最低3メッセージ） |
+| `memu_memorize_status` | 記憶保存タスクの進行状況を確認 |
+| `memu_retrieve` | セマンティック検索で関連記憶を取得 |
 | `memu_categories` | 記憶カテゴリ一覧を取得 |
+| `memu_delete` | ユーザーまたはエージェントの記憶を削除 |
 
 ## セットアップ
 
@@ -42,6 +44,16 @@ claude mcp add --scope user --transport stdio memu-v3 \
 ### 4. 動作確認
 
 Claude Code を起動して `/mcp` で `memu-v3` が認識されていることを確認。
+
+## API 対応表
+
+| ツール | エンドポイント | メソッド |
+|--------|---------------|----------|
+| `memu_memorize` | `/api/v3/memory/memorize` | POST |
+| `memu_memorize_status` | `/api/v3/memory/memorize/status/{task_id}` | GET |
+| `memu_retrieve` | `/api/v3/memory/retrieve` | POST |
+| `memu_categories` | `/api/v3/memory/categories` | POST |
+| `memu_delete` | `/api/v3/memory/delete` | POST |
 
 ## 環境変数
 
